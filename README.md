@@ -10,9 +10,9 @@ Docker compose for non clustered Liferay project (e.g: for development use only)
     ```console
      find ./ -name "*.sh" -exec chmod +x {} \;
     ```
-2. Start docker compose in detached mode
+2. Start all services in scheduled order
     ```console
-     sudo docker-compose up -d
+     start.sh
     ```
 
 ## Tips :
