@@ -20,26 +20,25 @@ services:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - elasticsearch-data:/usr/share/elasticsearch/data
       - elasticsearch-plugins:/usr/share/elasticsearch/plugins
-  mysql:
-    image: mysql:5.7.29
-    container_name: mysql
-    networks:
-      - fs73dxp1
-    ports:
-      - 3307:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: lportal
+  postgresql:
+    image: postgres:13.5
+    container_name: postgresql
     volumes:
-      - ./mysql/config/lportal.sql:/docker-entrypoint-initdb.d/lportal.sql
-      - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
-      - mysql:/var/lib/mysql
+      - database_data:/var/lib/postgresql/data
+      - ./postgresql/config/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=dbpassword
+    ports:
+      - 5432:5432
+    networks:
+      - fs73dxp1      
   tomcat:
     image: liferay/dxp:7.3.10-dxp-1
     container_name: tomcat
     depends_on:
       - elasticsearch
-      - mysql
+      - postgresql
     environment:
       LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_DELAY: 10
       LIFERAY_RETRY_PERIOD_JDBC_PERIOD_ON_PERIOD_STARTUP_PERIOD_MAX_PERIOD_RETRIES: 10
@@ -78,4 +77,4 @@ volumes:
   liferay-osgi-marketplace:
   liferay-osgi-modules:
   liferay-osgi-war:
-  mysql:
+  database_data:

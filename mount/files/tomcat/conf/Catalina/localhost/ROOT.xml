@@ -32,6 +32,7 @@
 	</Resources>
 
 	<!-- MYSQL DATASOURCE -->
+	<!--
 	<Resource 
 		name="jdbc/LiferayPool" 
 		auth="Container" 
@@ -42,6 +43,21 @@
 		password="password" 
 		maxActive="20"
 		validationQuery="Select 1" 
+	/>
+	-->
+
+	<!-- POSTGRESQL DATASOURCE -->
+	<Resource 
+		name="jdbc/LiferayPool" 
+		auth="Container" 
+		type="javax.sql.DataSource" 
+		maxTotal="10" 
+		maxIdle="5" 
+		username="dbuser" 
+		password="dbpassword" 
+		driverClassName="org.postgresql.Driver" 
+		url="jdbc:postgresql://postgresql:5432/lportal" 
+		validationQuery="select 1"
 	/>
 
 </Context>
