@@ -10,6 +10,10 @@ Docker compose for non clustered Liferay project (e.g: for development use only)
     ```console
      find ./ -name "*.sh" -exec chmod +x {} \;
     ```
+2. Setup permissions on the deploy directory
+    ```console
+     chmod -R a+rwx liferay    
+    ```
 2. Start all services in scheduled order
     ```console
      start.sh
