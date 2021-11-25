@@ -55,6 +55,7 @@ services:
       - liferay-osgi-marketplace:/opt/liferay/osgi/marketplace
       - liferay-osgi-modules:/opt/liferay/osgi/modules
       - liferay-osgi-war:/opt/liferay/osgi/war
+      - ./liferay/deploy:/opt/liferay/deploy
   kibana:
     image: kibana:7.13.2
     container_name: kibana
