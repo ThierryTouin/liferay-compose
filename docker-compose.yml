@@ -53,9 +53,10 @@ services:
       - liferay-data:/opt/liferay/data
       - liferay-osgi-configs:/opt/liferay/osgi/configs
       - liferay-osgi-marketplace:/opt/liferay/osgi/marketplace
-      - liferay-osgi-modules:/opt/liferay/osgi/modules
+      #- liferay-osgi-modules:/opt/liferay/osgi/modules
       - liferay-osgi-war:/opt/liferay/osgi/war
       - ./liferay/deploy:/opt/liferay/deploy
+      - ./liferay/osgi/modules:/opt/liferay/osgi/modules
   kibana:
     image: kibana:7.13.2
     container_name: kibana
@@ -76,6 +77,6 @@ volumes:
   liferay-data:
   liferay-osgi-configs:
   liferay-osgi-marketplace:
-  liferay-osgi-modules:
+  #liferay-osgi-modules:
   liferay-osgi-war:
   database_data:
