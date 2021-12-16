@@ -40,5 +40,12 @@ Docker compose for non clustered Liferay project (e.g: for development use only)
       ```console      
       sudo docker-compose up -d mysql
      ```      
-
-
+## Problems
+- If the following error appears 
+    ```
+    ERROR: Couldn't connect to Docker daemon at http+docker://localhost - is it running?
+    ```
+    Use the following command to correct
+    ``` 
+    sudo setfacl -m user:$USER:rw /var/run/docker.sock
+    ``` 
